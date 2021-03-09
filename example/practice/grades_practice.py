@@ -15,17 +15,23 @@ def kick_out_min():
     g= get_score()
     minimum_score = min(g)
     g.remove(minimum_score)
-    return g
+    return g,len(g)
 
 def calculate_average():
-    grades = kick_out_min()
+    grades,subjects = kick_out_min()
     count = 0
-    for i in range(0,len(grades)-1):
+    for i in range(0,len(grades)):
         count+= grades[i]
-    return count
+    
+    average = count/subjects
+
+    return average
 
 def main():
-    print(calculate_average)
+    a= calculate_average()
+    print('---------------------------------------')
+    print('|   So your score average is ', a,'  |')
+    print('---------------------------------------')
     
 
 main()
