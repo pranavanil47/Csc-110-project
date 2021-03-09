@@ -1,20 +1,19 @@
 def get_score():
-    grades_list =[]
+    grades_list =[0]
 
     subjects = int(input('Enter the number of subjects to calculate the average '\
         ))
     
-    i =1
-    while i <= subjects:
-        scores = int(input('Enter scores for', 'subject; ' ))
-        grades_list= grades_list.append(scores)
+    while subjects>0:
+        scores = int(input('Enter scores for', 'subject: ' ))
         
-        i+=1
-    return grades_list
+        subjects-=1
+    
 
+    return grades_list ,scores
 
 def main():
-    a = get_score()
-    print(a)
+    print(get_score())
+    
 
 main()
