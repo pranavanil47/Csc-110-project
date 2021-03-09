@@ -5,4 +5,10 @@ def get_score():
          average '))
     i =1
     while subjects>0 :
-        scores = float(input('Enter scores for',str(i)+'subject; ' )
+        scores = float(input('Enter scores for',str(i)+'st', 'subject; ' ))
+        grades_list= grades_list.append(scores)
+        subjects -=1
+        i+=1
+    return grades_list
+
+
