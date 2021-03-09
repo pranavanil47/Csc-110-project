@@ -14,7 +14,8 @@ def print_card(content):
     print('+--'+ '-' * length +'--+')
     print('|  '+ content +'  ')
     print('+--'+ '-' * length +'--+')
-    
+
+
 def quiz(words,definitions):
     ri = random.randint(0,int(len(words)-1))
     word = words[ri]
