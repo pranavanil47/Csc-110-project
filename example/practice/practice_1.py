@@ -15,7 +15,7 @@ def collect_age():
     age_list =[]
     i = 0
     while i < len(a):
-        age = int(input('Enter age of', a[i]))
+        age = int(input('Enter age of'))
 
         age_list.append(age)
         i+=1
