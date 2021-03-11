@@ -21,7 +21,10 @@ def print_winner():
     for i in range(0,len(winner)):
         string += str(winner[i])
     
+    print('The winning lottery is')
+    input('Press Enter to find out.............')
     print(string)
+    
 
 def main():
     
