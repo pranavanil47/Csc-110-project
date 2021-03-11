@@ -28,7 +28,7 @@ def main():
         if correct[i] == student[i]:
             score+=1
         i+=1
-    input('Press Enter your score')
+    input('Press Enter your score...........')
     print('------------------------------------------------')
     if score >= 5:
         print('Your score is', score)
