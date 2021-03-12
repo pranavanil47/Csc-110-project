@@ -15,7 +15,7 @@ def collect_age():
     age_list =[]
     i = 0
     while i < len(a):
-        age = int(input('Enter age of'))
+        age = int(input('Enter age of '+a[i]+' '))
 
         age_list.append(age)
         i+=1
@@ -45,7 +45,6 @@ def main():
     age_print = str(age[index])
 
     print('The age of', n, 'is', age_print)
-    print(n[0])
      
 
     
