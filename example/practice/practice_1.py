@@ -45,6 +45,7 @@ def main():
     age_print = str(age[index])
 
     print('The age of', n, 'is', age_print)
+    print(n[0])
      
 
     
