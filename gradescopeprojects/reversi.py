@@ -1,131 +1,170 @@
-###
-### Author: ?
-### Course: ?
-### Description: ?
-###
 
 from graphics import graphics
 
 # Some constants to be used throughout the code
 # The literals 'X' and 'O' and ' ' should not be used elsewhere
+WHITE = 'O'
+BLACK = 'X'
+EMPTY = ' '
 
 def is_move_acceptable(board, turn, pos):
-    pos = pos - 1 
-    WHITE = 'O'
-    BLACK = 'X'
-    EMPTY = ' '
+    """
+    Checks if the board is empty or full
 
-    if pos in range(0,12) and board[pos] == EMPTY:
+    :param board: The board is a list
+    :param turn:  checks whether it is white or black's turn
+    :param pos: position of the element on the board
+    :return: True or False
+    """
+    if board[pos - 1] == EMPTY:
         return True
-    else:
-        return False
-    ''' Implement '''
-    pass
+    return False
 
 def move(board, turn, pos):
-    WHITE = 'O'
-    BLACK = 'X'
-    EMPTY = ' '
-    pos = pos - 1
+    """
+    Checks the location of the constants and assigns nee pieces
 
-    if turn == BLACK:
-        board[pos] = BLACK
-        if  board[pos-1]!= EMPTY:
-            i = pos-2
-            while board[i] == BLACK:
-                board[i] = BLACK
-                i-=1
-                    
+    :param board: The board is a list
+    :param turn:  checks whether it is white or black's turn
+    :param pos: position of the element on the board
+    :return: True or False
+    """
+    position = pos - 1
+    board[position] = turn
+    player = get_opposite_turn(turn)
+    i = position + 1
+    while i < len(board) and board[i] == player:
+        i += 1
+    if i < len(board) and board[i] == turn:
+        for x in range(position+1,i,1):
+            board[position] = turn
+    i = position - 1
 
-              
-    
-    elif turn == WHITE:
-        board[pos] = WHITE
-        if board[pos-1]!= EMPTY:
-            i = pos-2
-            while board[i] == WHITE:
-                board[i] = WHITE
-                i-=1
-                    
-    ''' Implement '''
+    while i > -1 and board[i] == player:
+        i -= 1
+
+    if i > -1 and board[i] == turn:
+        for y in range(i+1,position,1):
+            board[y] = turn
 
 def get_move(turn):
-    ''' Implement '''
-    WHITE = 'O'
-    BLACK = 'X'
-    EMPTY = ' '
-    if turn == BLACK:
-        value = int(input('X choose your move:\n'))
-    elif turn == WHITE:
-        value = int(input('O choose your move:\n'))
+    """
+    Asks the user to input the position of the piece
 
-    
-    return value
-   
+    :param board: The board is a list
+    :param turn:  checks whether it is white or black's turn
+    :param pos: position of the element on the board
+    :return: position of the piece
+    """
+    if turn == WHITE:
+        value = input("O Enter a value: ")
+    if turn == BLACK:
+        value = input("X Enter a value: ")
+    return int(value)
 
 def is_over(board):
-    ''' Implement '''
-    WHITE = 'O'
-    BLACK = 'X'
-    EMPTY = ' '
+    """
+    Determines when the reversi game is over
 
-    for i in range(len(board)):
-        if board[i] == EMPTY:
-            return False
-    return True    
-    pass
+    :param board: The board is a list
+    :param turn:  checks whether it is white or black's turn
+    :param pos: position of the element on the board
+    :return: True or False
+    """
+
+    not_full = False
+    i = 0
+    while i < len(board):
+        if i == EMPTY:
+            not_full = True
+        else:
+            not_full = False
+        i += 1
+    return not_full
+
 
 def get_opposite_turn(turn):
-    WHITE = 'O'
-    BLACK = 'X'
-    EMPTY = ' '
+    """
+    Switches the white pieces to black and the black pieces to white
+
+    :param turn:  checks whether it is white or black's turn
+    :return: True or False
+    """
 
     if turn == WHITE:
         return BLACK
-    elif turn == BLACK:
+    if turn == BLACK:
         return WHITE
 
-    ''' Implement '''
-    pass
-
 def print_board(board):
-    ''' Implement '''
-    
-    print('+-----------------------+')
-    print('|'+board[0]+ '|'+board[1]+ '|'+board[2]+ '|'+board[3]+ '|'+board[4]+ \
-        '|'+board[5]+ '|'+board[6]+ '|'+board[7]+ '|'+board[8]+ '|'+board[9]+ \
-            '|'+board[10]+ '|'+board[11]+ '|')
-    print('+-----------------------+')
-    pass
-'''
+    """
+    Switches the white pieces to black and the black pieces to white
+
+    :param board: The board is a list
+    :return: None
+    """
+
+    print("+-----------------------+")
+    for x in range(len(board)):
+        print("|" + board[x], end="")
+    print("|")
+    print("+-----------------------+")
+
 def draw_board(board, gui):
-    
-    pass
-'''
-def who_is_winner(board):
-    ''' Implement '''
-    black_count = 0
-    white_count = 0
+    """
+    Displays the GUI version of the reversi game
+
+    :param board: The board is a list
+    :param gui: Graphical User Interface
+    :return: None
+    """
+
+
+    gui.clear()
+    gui.text(250,20,"REVERSI","black",40)
+    for index in range(50,650,50):
+        gui.rectangle(index,100,50,50,"green")
+        gui.line(index,100,index,150,"blue",3)
+    gui.line(650, 100, 650, 150, "blue",3)
+    gui.line(50, 100, 650, 100, "blue", 3)
+    gui.line(50, 150, 650, 150, "blue", 3)
+    marker1_x = 65
+    marker2_x = 60
     for i in range(len(board)):
-        if board[i] == 'X':
-            black_count +=1
-        elif board[i] == 'O':
-            white_count +=1
-    
-    if white_count > black_count:
-        print('white wins')
+        if board[i] == WHITE:
+            gui.text(marker2_x,100,"O","black",30)
+        elif board[i] == BLACK:
+            gui.text(marker1_x,100,"X","black",30)
+        marker1_x += 50
+        marker2_x += 50
+
+    gui.update_frame(30)
+
+def who_is_winner(board):
+    count_white = 0
+    count_black = 0
+    for x in board:
+        if x == "X":
+            count_black += 1
+        else:
+            count_white += 1
+    if count_white > count_black:
+        print("WHITE WINS")
+    elif count_black > count_white:
+        print("BLACK WINS")
     else:
-        print('black wins')
-    pass
+        print("THERE IS A TIE")
+
 
 def main():
+    """
+    In charge of running the other functions
+
+    :return: None
+    """
     print('WELCOME TO REVERSI')
-    WHITE = 'O'
-    BLACK = 'X'
-    EMPTY = ' '
 
-
-    #gui = graphics(700, 200, 'reversi')
+    gui = graphics(700, 200, 'reversi')
 
     # Initialize an empty list with 12 slots
     board = [EMPTY] * 12
@@ -135,10 +174,8 @@ def main():
     turn = BLACK
 
     # Print out the initial board
-    '''
     print_board(board)
     draw_board(board, gui)
-    '''
 
     # Repeatedly process turns until the game should end (every slot filled)
     while not over:
@@ -148,9 +185,7 @@ def main():
         move(board, turn, place_to_move)
 
         print_board(board)
-        '''
         draw_board(board, gui)
-        '''
 
         over = is_over(board)
         turn = get_opposite_turn(turn)
