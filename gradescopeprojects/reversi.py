@@ -8,12 +8,14 @@ from graphics import graphics
 
 # Some constants to be used throughout the code
 # The literals 'X' and 'O' and ' ' should not be used elsewhere
-WHITE = 'O'
-BLACK = 'X'
-EMPTY = ' '
 
 def is_move_acceptable(board, turn, pos):
-    if pos in range(1,12) and board[pos] == '':
+    pos = pos - 1 
+    WHITE = 'O'
+    BLACK = 'X'
+    EMPTY = ' '
+
+    if pos in range(0,12) and board[pos] == EMPTY:
         return True
     else:
         return False
@@ -21,18 +23,68 @@ def is_move_acceptable(board, turn, pos):
     pass
 
 def move(board, turn, pos):
+    WHITE = 'O'
+    BLACK = 'X'
+    EMPTY = ' '
+    pos = pos - 1
+
+    if turn == BLACK:
+        board[pos] = BLACK
+        if  board[pos-1]!= EMPTY:
+            i = pos-2
+            while board[i] == BLACK:
+                board[i] = BLACK
+                i-=1
+                    
+
+              
+    
+    elif turn == WHITE:
+        board[pos] = WHITE
+        if board[pos-1]!= EMPTY:
+            i = pos-2
+            while board[i] == WHITE:
+                board[i] = WHITE
+                i-=1
+                    
     ''' Implement '''
-    pass
 
 def get_move(turn):
     ''' Implement '''
-    pass
+    WHITE = 'O'
+    BLACK = 'X'
+    EMPTY = ' '
+    if turn == BLACK:
+        value = int(input('X choose your move:\n'))
+    elif turn == WHITE:
+        value = int(input('O choose your move:\n'))
+
+    
+    return value
+   
 
 def is_over(board):
     ''' Implement '''
+    WHITE = 'O'
+    BLACK = 'X'
+    EMPTY = ' '
+
+    for i in range(len(board)):
+        if board[i] == EMPTY:
+            return False
+    return True    
     pass
 
 def get_opposite_turn(turn):
+    WHITE = 'O'
+    BLACK = 'X'
+    EMPTY = ' '
+
+    if turn == WHITE:
+        return BLACK
+    elif turn == BLACK:
+        return WHITE
+
     ''' Implement '''
     pass
 
@@ -45,19 +97,35 @@ def print_board(board):
             '|'+board[10]+ '|'+board[11]+ '|')
     print('+-----------------------+')
     pass
-
+'''
 def draw_board(board, gui):
-    ''' Implement '''
+    
     pass
-
+'''
 def who_is_winner(board):
     ''' Implement '''
+    black_count = 0
+    white_count = 0
+    for i in range(len(board)):
+        if board[i] == 'X':
+            black_count +=1
+        elif board[i] == 'O':
+            white_count +=1
+    
+    if white_count > black_count:
+        print('white wins')
+    else:
+        print('black wins')
     pass
 
 def main():
     print('WELCOME TO REVERSI')
+    WHITE = 'O'
+    BLACK = 'X'
+    EMPTY = ' '
 
-    gui = graphics(700, 200, 'reversi')
+
+    #gui = graphics(700, 200, 'reversi')
 
     # Initialize an empty list with 12 slots
     board = [EMPTY] * 12
@@ -67,8 +135,10 @@ def main():
     turn = BLACK
 
     # Print out the initial board
+    '''
     print_board(board)
     draw_board(board, gui)
+    '''
 
     # Repeatedly process turns until the game should end (every slot filled)
     while not over:
@@ -78,7 +148,9 @@ def main():
         move(board, turn, place_to_move)
 
         print_board(board)
+        '''
         draw_board(board, gui)
+        '''
 
         over = is_over(board)
         turn = get_opposite_turn(turn)
