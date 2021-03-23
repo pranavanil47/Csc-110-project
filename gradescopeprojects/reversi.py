@@ -16,7 +16,7 @@ def is_move_acceptable(board, turn, pos):
     :param pos: position of the element on the board
     :return: True or False
     """
-    if board[pos - 1] == EMPTY:
+    if board[pos - 1] == EMPTY and pos in range(1,14):
         return True
     return False
 
