@@ -1,4 +1,11 @@
 def split_file(index_file,encrypted_file):
+    '''
+    This function splits the contents of the text file and the index file into a
+    list and returns it.
+    Parameters;
+    encrypted_file: A string contiaining .txt file to decrypt.
+    index_file: A string containing .txt file used as the key 
+    '''
     index_list = []
     file_index = open(index_file, 'r')
     line_index = file_index.readlines()
@@ -20,6 +27,7 @@ def split_file(index_file,encrypted_file):
   
 def decrypter(key,list_to_decrypt):
     decrypted_list=[''] * len(key)
+    
     i = 0
     while i <len(key):
         index = key[i]
@@ -28,17 +36,19 @@ def decrypter(key,list_to_decrypt):
     string = '\n'.join(decrypted_list)
     return string 
 
-def decrypted_file(file_name,string):
-    file = open(file_name, 'w')
+def decrypted_file(string):
+    file = open('decrypted.txt', 'w')
     file.write(string)
     file.close()
     
 
     
 def main():
-    key,list_to_decrypt= split_file('index.txt','encrypt.txt')
+    file_name = input('Enter the name of an encrypted text file:\n')
+    key = input('Enter the name of the encryption index file:\n')
+    key,list_to_decrypt= split_file(key,file_name)
     decrypted_string = decrypter(key,list_to_decrypt)
-    decrypted_file('encrypt.txt',decrypted_string)
+    decrypted_file(decrypted_string)
     
 
 main()
