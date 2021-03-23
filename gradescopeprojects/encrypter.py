@@ -12,16 +12,16 @@ def  split_file(file_to_encrypt):
     Parameters;
     file_to_encrypt: A string containing a .txt file to encrypt.
     '''
-    file_split = open(file_to_encrypt, 'a')
-    list_words= []
-    file_split.write(' ')
-    file_split.close
 
+    list_words= []
+    
     file_split = open(file_to_encrypt, 'r') 
     lines = file_split.readlines()
     for line in lines:
         p = line[:-1]
         list_words.append(p)
+    
+    list_words[:-1]
     
     return list_words
 
@@ -62,7 +62,7 @@ def encrypt(index_list,words_list):
         shuffle_list.append(words_list[k])
         i+=1
     
-    string = '\n'.join(shuffle_list)
+    string = '\n'.join(shuffle_list) + '\n' + ' '
     
     return string
 
