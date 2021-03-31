@@ -1,0 +1,5 @@
+army
+navy
+star
+america
+bullet

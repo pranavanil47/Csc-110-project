@@ -3,7 +3,7 @@
 ### Class : CSc 110
 ### Description : A program that decrypts an encrypted text file with the help 
 ###               of an idex file or a key and saves as a text file.    
-###
+### 
 
 
 def split_file(index_file,encrypted_file):

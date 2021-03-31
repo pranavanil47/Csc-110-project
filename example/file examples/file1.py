@@ -1,5 +1,6 @@
-info = open('file1_text.txt', 'r')
-line  = info.readline()
+info = open('a.txt', 'r')
+line  = info.readlines()
+line.strip('\n')
 print(line)
 
 line = info.readline()
