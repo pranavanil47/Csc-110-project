@@ -17,5 +17,12 @@ for key, value in word.items():
     else:
         print(False)
 
-
+title = 'willie'
+name = title
+print(name+ ' ' + title)
+title = 'josh'
+print(name+ ' '+ title)
+name_b = name
+name = 'stanley'
+print(name+' '+ name_b+ ' '+ title)
 
