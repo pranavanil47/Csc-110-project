@@ -1,0 +1,5 @@
+steak
+chicken
+hamsteak
+chicken
+ham

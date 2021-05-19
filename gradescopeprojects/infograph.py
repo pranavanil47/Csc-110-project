@@ -1,3 +1,18 @@
+###
+### Author : Pranav I Anilkumar
+### Class : CSc 110
+### Description : A program that reads a text file from the user and prints 
+###              a graph of numberof small words, meduim words and large words, 
+###              the number of capitilized word to non-carptilized and the number 
+###              of puctuated words to non-punctuated. This program also prints 
+###              out the most occured small word, meduim word and large word with
+###              their numeber of occurances. The file is converted to list then
+###              to a dictonary with the format{string:occurances}. This program
+###              also shows the number of unique words.
+###
+
+  
+
 from graphics import graphics
 
 def split_file(file_name):
