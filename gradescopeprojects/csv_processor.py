@@ -2,7 +2,7 @@
 ### Author : Pranav I Anilkumar
 ### Class : CSc 110
 ### Description : A program that reads a csv file and then does any of the three
-###               operations; maximum, minimum and average of a column.   
+###               operations; maximum, minimum and average of a column.\   
 ###                
 ###
 def read_file(file_name,number_list):
